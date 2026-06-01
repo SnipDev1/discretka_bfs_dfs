@@ -1,6 +1,5 @@
-#include <fstream>
 #include <vector>
-#include <queue>
+#include <fstream>
 #include <chrono>
 
 using namespace std;
@@ -8,29 +7,19 @@ using namespace std;
 static vector<vector<unsigned int>> graph;
 static vector<bool> visited;
 
-void bfs(unsigned int start) {
-    queue<unsigned int> q;
-
-    q.push(start);
-    visited[start] = true;
-
-    while (!q.empty()) {
-        unsigned int v = q.front();
-        q.pop();
-
-        for (unsigned int to : graph[v]) {
-            if (!visited[to]) {
-                visited[to] = true;
-                q.push(to);
-            }
+void dfs(unsigned int v) {
+    visited[v] = true;
+    for (unsigned int to : graph[v]) {
+        if (!visited[to]) {
+            dfs(to);
         }
     }
 }
 
-void run_bfs(const string& in_filename) {
+void run_dfs(const string& in_filename) {
     ifstream infile(in_filename);
 
-
+    // Умный поиск файла
     if (!infile.is_open()) {
         infile.open("../" + in_filename);
     }
@@ -62,7 +51,7 @@ void run_bfs(const string& in_filename) {
 
         for (unsigned int i = 0; i < n; i++) {
             if (!visited[i]) {
-                bfs(i);
+                dfs(i);
                 components++;
             }
         }
@@ -70,10 +59,11 @@ void run_bfs(const string& in_filename) {
 
     auto end_time = chrono::high_resolution_clock::now();
 
+
     chrono::duration<double, milli> elapsed = end_time - start_time;
     double avg_time = elapsed.count() / RUNS;
 
-    printf_s("(bfs.cpp)\n");
+    printf_s("(dfs.cpp)\n");
     printf_s("Количество компонент связности: %u\n", components);
     printf_s("Среднее время выполнения (%d запусков): %.6f мс\n\n", RUNS, avg_time);
 }

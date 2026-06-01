@@ -16,7 +16,7 @@ int main() {
     vector<string> filenames;
     string str;
 
-    printf_s("Имя файла с графом: ");
+    printf_s("Имя файлов с графами: ");
     while (getline(cin, str) && !str.empty())
     {
         filenames.push_back(str);
