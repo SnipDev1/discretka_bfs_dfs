@@ -1,0 +1,3 @@
+C:/Users/dimas/CLionProjects/discretka/cmake-build-debug/CMakeFiles/discretka.dir
+C:/Users/dimas/CLionProjects/discretka/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/dimas/CLionProjects/discretka/cmake-build-debug/CMakeFiles/rebuild_cache.dir
