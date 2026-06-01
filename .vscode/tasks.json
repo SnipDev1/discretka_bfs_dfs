@@ -1,4 +1,5 @@
 {
+    "version": "2.0.0",
     "tasks": [
         {
             "type": "cppbuild",
@@ -8,11 +9,9 @@
                 "/Zi",
                 "/EHsc",
                 "/nologo",
-
                 "main.cpp",
                 "dfs.cpp",
                 "bfs.cpp",
-
                 "/Fe:main.exe"
             ],
             "options": {
@@ -25,7 +24,37 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "type": "cppbuild",
+            "label": "Build gen",
+            "command": "cl.exe",
+            "args": [
+                "/Zi",
+                "/EHsc",
+                "/nologo",
+                "generator.cpp",
+                "/Fe:generator.exe",
+                "/std:c++17"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Build All",
+            "dependsOn": [
+                "Build Graph Project",
+                "Build gen",
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
-    ],
-    "version": "2.0.0"
+    ]
 }
